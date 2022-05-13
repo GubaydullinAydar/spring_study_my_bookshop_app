@@ -1,23 +1,18 @@
 DROP TABLE IF EXISTS books;
-DROP TABLE IF EXISTS author;
+DROP TABLE IF EXISTS authors;
 
-CREATE TABLE author
+create table authors
 (
-    id             INT AUTO_INCREMENT PRIMARY KEY,
-    author         VARCHAR(250) NOT NULL,
-    shortBiography VARCHAR(2000) DEFAULT NULL,
-    fullBiography  VARCHAR(4000) DEFAULT NULL
+    id         INT,
+    first_name VARCHAR(50),
+    last_name  VARCHAR(50)
 );
 
 CREATE TABLE books
 (
     id       INT AUTO_INCREMENT PRIMARY KEY,
-    authorId INT          NOT NULL,
+    author   VARCHAR(250) NOT NULL,
     title    VARCHAR(250) NOT NULL,
     priceOld VARCHAR(250) DEFAULT NULL,
     price    VARCHAR(250) DEFAULT NULL
 );
-
-ALTER TABLE books
-    ADD FOREIGN KEY (authorId)
-        REFERENCES author (id);

@@ -19,8 +19,7 @@ public class BookService {
     }
 
     public List<Book> getBooksData() {
-        List<Book> books = jdbcTemplate.query(
-                "SELECT t.id, a.author, t.title, t.priceOld, t.price  FROM books t INNER JOIN author a WHERE a.id = t.authorId",
+        List<Book> books = jdbcTemplate.query("SELECT *  FROM books t",
                 (ResultSet rs, int rowNum) -> {
                     Book book = new Book();
                     book.setId(rs.getInt("id"));
@@ -30,21 +29,6 @@ public class BookService {
                     book.setPrice(rs.getString("price"));
                     return book;
                 });
-        return new ArrayList<>(books);
-    }
-
-    public List<Book> getBooksData(Integer authorId) {
-        List<Book> books = jdbcTemplate.query(
-                "SELECT t.id, a.author, t.title, t.priceOld, t.price  FROM books t INNER JOIN author a WHERE a.id = t.authorId and t.authorId = ? ",
-                (ResultSet rs, int rowNum) -> {
-                    Book book = new Book();
-                    book.setId(rs.getInt("id"));
-                    book.setAuthor(rs.getString("author"));
-                    book.setTitle(rs.getString("title"));
-                    book.setPriceOld(rs.getString("priceOld"));
-                    book.setPrice(rs.getString("price"));
-                    return book;
-                }, authorId);
         return new ArrayList<>(books);
     }
 }
