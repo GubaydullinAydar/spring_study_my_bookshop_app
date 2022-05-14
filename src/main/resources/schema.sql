@@ -3,14 +3,14 @@ DROP TABLE IF EXISTS authors;
 
 create table authors
 (
-    id         INT,
+    id         BIGSERIAL PRIMARY KEY,
     first_name VARCHAR(50),
     last_name  VARCHAR(50)
 );
 
 CREATE TABLE books
 (
-    id       INT AUTO_INCREMENT PRIMARY KEY,
+    id       BIGSERIAL PRIMARY KEY,
     author   VARCHAR(250) NOT NULL,
     title    VARCHAR(250) NOT NULL,
     priceOld VARCHAR(250) DEFAULT NULL,
