@@ -7,10 +7,10 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface BookRepository extends JpaRepository<Book, Integer> {
+public interface BookRepository extends JpaRepository<Books, Integer> {
 
-    List<Book> findBooksByAuthor_FirstName(String name);
+    List<Books> findBooksByAuthors_FirstName(String name);
 
-    @Query("FROM Book")
-    List<Book> customFindAllBooks();
+    @Query("FROM Books")
+    List<Books> customFindAllBooks();
 }

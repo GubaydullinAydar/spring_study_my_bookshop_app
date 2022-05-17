@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "books")
-public class Book {
+public class Books {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -12,7 +12,7 @@ public class Book {
 
     @ManyToOne
     @JoinColumn(name = "author_id", referencedColumnName = "id")
-    private Author author;
+    private Authors authors;
     private String title;
     private String priceOld;
     private String price;
@@ -25,12 +25,12 @@ public class Book {
         this.id = id;
     }
 
-    public Author getAuthor() {
-        return author;
+    public Authors getAuthor() {
+        return authors;
     }
 
-    public void setAuthor(Author author) {
-        this.author = author;
+    public void setAuthor(Authors authors) {
+        this.authors = authors;
     }
 
     public String getTitle() {
@@ -61,7 +61,7 @@ public class Book {
     public String toString() {
         return "Book{" +
                 "id=" + id +
-                ", author=" + author +
+                ", author=" + authors +
                 ", title='" + title + '\'' +
                 ", priceOld='" + priceOld + '\'' +
                 ", price='" + price + '\'' +

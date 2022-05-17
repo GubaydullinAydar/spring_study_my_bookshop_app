@@ -17,7 +17,7 @@ public class AuthorService {
         this.authorRepository = authorRepository;
     }
 
-    public Map<String, List<Author>> getAuthorsMap() {
-        return authorRepository.findAll().stream().collect(Collectors.groupingBy(author -> author.getLastName().substring(0, 1)));
+    public Map<String, List<Authors>> getAuthorsMap() {
+        return authorRepository.findAll().stream().collect(Collectors.groupingBy(authors -> authors.getLastName().substring(0, 1)));
     }
 }

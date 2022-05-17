@@ -6,7 +6,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "authors")
-public class Author {
+public class Authors {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,8 +14,8 @@ public class Author {
     String firstName;
     String lastName;
 
-    @OneToMany(mappedBy = "author")
-    private List<Book> bookList = new ArrayList<>();
+    @OneToMany(mappedBy = "authors")
+    private List<Books> booksList = new ArrayList<>();
 
     public Integer getId() {
         return id;
@@ -41,12 +41,12 @@ public class Author {
         this.lastName = lastName;
     }
 
-    public List<Book> getBookList() {
-        return bookList;
+    public List<Books> getBookList() {
+        return booksList;
     }
 
-    public void setBookList(List<Book> bookList) {
-        this.bookList = bookList;
+    public void setBookList(List<Books> booksList) {
+        this.booksList = booksList;
     }
 
     @Override

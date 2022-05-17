@@ -13,11 +13,11 @@ public class BookFileEntity {
     @Column(columnDefinition = "VARCHAR(255) NOT NULL")
     private String hash;
 
-    @Column(columnDefinition = "TEXT")
-    private String path;
-
     @Column(columnDefinition = "INT NOT NULL")
     private int typeId;
+
+    @Column(columnDefinition = "VARCHAR(255) NOT NULL")
+    private String path;
 
     public int getId() {
         return id;
