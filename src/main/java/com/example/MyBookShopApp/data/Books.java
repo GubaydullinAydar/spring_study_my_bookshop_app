@@ -1,5 +1,7 @@
 package com.example.MyBookShopApp.data;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -12,6 +14,7 @@ public class Books {
 
     @ManyToOne
     @JoinColumn(name = "author_id", referencedColumnName = "id")
+    @JsonIgnore
     private Authors authors;
     private String title;
     private String priceOld;

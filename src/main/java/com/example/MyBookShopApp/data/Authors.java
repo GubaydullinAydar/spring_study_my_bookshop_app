@@ -1,5 +1,7 @@
 package com.example.MyBookShopApp.data;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +17,7 @@ public class Authors {
     String lastName;
 
     @OneToMany(mappedBy = "authors")
+    @JsonIgnore
     private List<Books> booksList = new ArrayList<>();
 
     public Integer getId() {
