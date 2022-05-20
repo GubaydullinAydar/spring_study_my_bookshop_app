@@ -1,6 +1,6 @@
 package com.example.MyBookShopApp.data;
 
-import org.codehaus.jackson.annotate.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -8,6 +8,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "authors")
+@JsonIgnoreProperties({"bookList"})
 public class Authors {
 
     @Id
@@ -17,7 +18,6 @@ public class Authors {
     String lastName;
 
     @OneToMany(mappedBy = "authors")
-    @JsonIgnore
     private List<Books> booksList = new ArrayList<>();
 
     public Integer getId() {
