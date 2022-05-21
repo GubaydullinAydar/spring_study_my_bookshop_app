@@ -1,5 +1,6 @@
 package com.example.MyBookShopApp.controllers;
 
+import com.example.MyBookShopApp.config.SpringFoxConfig;
 import com.example.MyBookShopApp.data.BookService;
 import com.example.MyBookShopApp.data.Books;
 import io.swagger.annotations.Api;
@@ -15,7 +16,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api")
-@Api(description = "book data api")
+@Api(tags = {SpringFoxConfig.BOOK_REST})
 public class BooksRestApiController {
 
     private final BookService bookService;
@@ -41,6 +42,12 @@ public class BooksRestApiController {
     @ApiOperation("get book by price range")
     public ResponseEntity<List<Books>> priceRangeBooks(@RequestParam("min") Integer min, @RequestParam("max") Integer max) {
         return ResponseEntity.ok(bookService.getBooksWithPriceBetween(min, max));
+    }
+
+    @GetMapping("/books/by-price")
+    @ApiOperation("get book by price")
+    public ResponseEntity<List<Books>> booksByPrice(@RequestParam("price") Integer price) {
+        return ResponseEntity.ok(bookService.getBooksWithPrice(price));
     }
 
     @GetMapping("/books/with-max-discount")

@@ -7,6 +7,7 @@ import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.service.Contact;
+import springfox.documentation.service.Tag;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 
@@ -15,6 +16,9 @@ import java.util.ArrayList;
 @Configuration
 public class SpringFoxConfig {
 
+    public static final String BOOK_REST = "BookRest";
+    public static final String AUTHORS = "Authors";
+
     @Bean
     public Docket docket() {
         return new Docket(DocumentationType.SWAGGER_2)
@@ -22,8 +26,9 @@ public class SpringFoxConfig {
                 .apis(RequestHandlerSelectors.withClassAnnotation(Api.class))
                 .paths(PathSelectors.any())
                 .build()
-                .apiInfo(apiInfo())
-                ;
+                .tags(new Tag(BOOK_REST, "book data api"))
+                .tags(new Tag(AUTHORS, "authors data"))
+                .apiInfo(apiInfo());
     }
 
     public ApiInfo apiInfo() {

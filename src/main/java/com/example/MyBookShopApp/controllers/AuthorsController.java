@@ -1,5 +1,6 @@
 package com.example.MyBookShopApp.controllers;
 
+import com.example.MyBookShopApp.config.SpringFoxConfig;
 import com.example.MyBookShopApp.data.AuthorService;
 import com.example.MyBookShopApp.data.Authors;
 import io.swagger.annotations.Api;
@@ -12,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-@Api(description = "authors data")
+@Api(tags = {SpringFoxConfig.AUTHORS})
 public class AuthorsController {
 
     private final AuthorService authorService;
