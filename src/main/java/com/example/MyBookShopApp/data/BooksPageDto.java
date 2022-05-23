@@ -2,13 +2,14 @@ package com.example.MyBookShopApp.data;
 
 import java.util.List;
 
-public class RecommendedBooksPageDto {
+public class BooksPageDto {
 
     private Integer count;
     private List<Books> books;
 
-    public RecommendedBooksPageDto(Integer count, List<Books> books) {
-        this.count = count;
+    public BooksPageDto(List<Books> books) {
+        this.count = books.size();
+        ;
         this.books = books;
     }
 
