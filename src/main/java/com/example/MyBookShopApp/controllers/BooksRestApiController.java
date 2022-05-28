@@ -39,7 +39,7 @@ public class BooksRestApiController {
     }
 
     @GetMapping("/books/by-price-range")
-    @ApiOperation("get book by price range")
+    @ApiOperation("get book by price range from min price to max price")
     public ResponseEntity<List<Books>> priceRangeBooks(@RequestParam("min") Integer min, @RequestParam("max") Integer max) {
         return ResponseEntity.ok(bookService.getBooksWithPriceBetween(min, max));
     }
@@ -57,8 +57,8 @@ public class BooksRestApiController {
     }
 
     @GetMapping("/books/bestsellers")
-    @ApiOperation("get bestsellers books")
-    public ResponseEntity<List<Books>> bestsellerBooks() {
+    @ApiOperation("get bestseller books (which is_bestseller = 1)")
+    public ResponseEntity<List<Books>> bestSellerBooks() {
         return ResponseEntity.ok(bookService.getBestsellers());
     }
 }
