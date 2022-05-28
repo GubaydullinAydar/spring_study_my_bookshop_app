@@ -1,6 +1,7 @@
 package com.example.MyBookShopApp.data;
 
 
+import com.example.MyBookShopApp.config.SpringFoxConfig;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.Api;
@@ -11,7 +12,7 @@ import java.sql.Date;
 
 @Entity
 @Table(name = "books")
-@Api(description = "entity representing a book")
+@Api(tags = {SpringFoxConfig.BOOK_ENTITY})
 @JsonIgnoreProperties({"authors"})
 public class Books {
 

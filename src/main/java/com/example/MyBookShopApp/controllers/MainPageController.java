@@ -27,6 +27,16 @@ public class MainPageController {
         return bookService.getPageOfRecommendedBooks(0, 6).getContent();
     }
 
+    @ModelAttribute("recentBooks")
+    public List<Books> recentBooks() {
+        return bookService.getPageOfRecentBooks(0, 6).getContent();
+    }
+
+    @ModelAttribute("popularBooks")
+    public List<Books> popularBooks() {
+        return bookService.getPageOfPopularBooks(0, 6).getContent();
+    }
+
     @ModelAttribute("searchWordDto")
     public SearchWordDto searchWordDto() {
         return new SearchWordDto();
@@ -52,6 +62,20 @@ public class MainPageController {
     public BooksPageDto getBooksPage(@RequestParam("offset") Integer offset,
                                      @RequestParam("limit") Integer limit) {
         return new BooksPageDto(bookService.getPageOfRecommendedBooks(offset, limit).getContent());
+    }
+
+    @GetMapping("/books/recent")
+    @ResponseBody
+    public BooksPageDto getBooksRecentPage(@RequestParam("offset") Integer offset,
+                                           @RequestParam("limit") Integer limit) {
+        return new BooksPageDto(bookService.getPageOfRecentBooks(offset, limit).getContent());
+    }
+
+    @GetMapping("/books/popular")
+    @ResponseBody
+    public BooksPageDto getBooksPopularPage(@RequestParam("offset") Integer offset,
+                                            @RequestParam("limit") Integer limit) {
+        return new BooksPageDto(bookService.getPageOfPopularBooks(offset, limit).getContent());
     }
 
     @GetMapping(value = {"/search", "/search/{searchWord}"})

@@ -18,6 +18,7 @@ public class SpringFoxConfig {
 
     public static final String BOOK_REST = "BookRest";
     public static final String AUTHORS = "Authors";
+    public static final String BOOK_ENTITY = "BookEntity";
 
     @Bean
     public Docket docket() {
@@ -28,6 +29,7 @@ public class SpringFoxConfig {
                 .build()
                 .tags(new Tag(BOOK_REST, "book data api"))
                 .tags(new Tag(AUTHORS, "authors data"))
+                .tags(new Tag(BOOK_ENTITY, "entity representing a book"))
                 .apiInfo(apiInfo());
     }
 
