@@ -4,9 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class BookService {
@@ -56,13 +59,17 @@ public class BookService {
         return bookRepository.findBooksByTitleContaining(searchWord, nextPage);
     }
 
-    public Page<Books> getPageOfRecentBooks(Integer offset, Integer limit) {
-        Pageable nextPage = PageRequest.of(offset, limit);
-        return bookRepository.findAll(nextPage);
+    public Page<Books> getPageOfRecentBooks(Date from, Date to, Integer offset, Integer limit) {
+        Pageable nextPage = PageRequest.of(offset, limit, Sort.by("pubDate"));
+        if (Objects.isNull(from) && Objects.isNull(to)) {
+            return bookRepository.findAll(nextPage);
+        } else {
+            return bookRepository.findBooksByPubDateBetween(from, to, nextPage);
+        }
     }
 
     public Page<Books> getPageOfPopularBooks(Integer offset, Integer limit) {
-        Pageable nextPage = PageRequest.of(offset, limit);
+        Pageable nextPage = PageRequest.of(offset, limit, Sort.by("isBestseller").descending());
         return bookRepository.findAll(nextPage);
     }
 }

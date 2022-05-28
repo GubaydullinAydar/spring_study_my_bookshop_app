@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Date;
 import java.util.List;
 
 @Repository
@@ -31,4 +32,6 @@ public interface BookRepository extends JpaRepository<Books, Integer> {
     List<Books> getBooksWithMaxDiscount();
 
     Page<Books> findBooksByTitleContaining(String bookTitle, Pageable nextPage);
+
+    Page<Books> findBooksByPubDateBetween(Date from, Date to, Pageable nextPage);
 }
