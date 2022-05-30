@@ -72,4 +72,9 @@ public class BookService {
         Pageable nextPage = PageRequest.of(offset, limit, Sort.by("isBestseller").descending());
         return bookRepository.findAll(nextPage);
     }
+
+    public Page<Books> getPageByTagId(Integer tagId, Integer offset, Integer limit) {
+        Pageable nextPage = PageRequest.of(offset, limit);
+        return bookRepository.findAll(nextPage);
+    }
 }

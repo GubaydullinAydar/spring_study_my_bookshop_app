@@ -39,6 +39,11 @@ public class MainPageController {
         return bookService.getPageOfPopularBooks(0, 6).getContent();
     }
 
+    @ModelAttribute("booksByTag")
+    public List<Books> bookByTag() {
+        return bookService.getPageByTagId(null, 0, 6).getContent();
+    }
+
     @ModelAttribute("searchWordDto")
     public SearchWordDto searchWordDto() {
         return new SearchWordDto();
@@ -103,6 +108,14 @@ public class MainPageController {
     public BooksPageDto getBooksPopularPage(@RequestParam("offset") Integer offset,
                                             @RequestParam("limit") Integer limit) {
         return new BooksPageDto(bookService.getPageOfPopularBooks(offset, limit).getContent());
+    }
+
+    @GetMapping("/books/tag/{tagId}")
+    @ResponseBody
+    public BooksPageDto getBooksPopularPage(@PathVariable(value = "tagId", required = false) Integer tagId,
+                                            @RequestParam("offset") Integer offset,
+                                            @RequestParam("limit") Integer limit) {
+        return new BooksPageDto(bookService.getPageByTagId(tagId, offset, limit).getContent());
     }
 
     @GetMapping(value = {"/search", "/search/{searchWord}"})
